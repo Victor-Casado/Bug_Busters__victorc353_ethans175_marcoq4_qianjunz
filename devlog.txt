@@ -1,0 +1,4 @@
+ethanS --- 2024-10-28 1:15
+* Added repo structure as detailed in p00 README.md
+* Added header to README
+* Modified Design Doc for some clarity
