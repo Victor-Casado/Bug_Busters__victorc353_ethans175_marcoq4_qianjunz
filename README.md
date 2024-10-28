@@ -31,6 +31,7 @@
 
 ### Running the App
 1. Activate PVM (Python Virtual Machine):
+
     macOS:
 
         $ cd [env_name]/bin
