@@ -6,8 +6,10 @@ qianjunZ --- 2024-10-28 01:36
 * Modified Design Doc with nessesary changes (more indepth, simpler comprehension)
 victorC --- 2024-10-28 07:42
 * Modified design doc removing redundancy
-victorC and qianjunZ and marcoQ--- 2024-10-29 10:49
+victorC and qianjunZ and marcoQ --- 2024-10-29 10:49
 * Modified launch codes and installation guide section of README.MD
 * Added file structure into repo
 ethanS --- 2024-10-29 10:57
 * Finished drawing and uploading team flag!
+victorC --- 2024-10-29 11:00
+Basic tepmlating of login, home, and signup pages
