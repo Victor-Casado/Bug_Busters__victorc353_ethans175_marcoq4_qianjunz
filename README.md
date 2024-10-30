@@ -22,13 +22,26 @@
 
 **Installing Dependencies**
 1. Navigate to [Python Download Page](https://www.python.org/downloads/) and install python3 on your machine
-2. In your terminal, run the command
+2. Create a virtual environment by running
+ 
+        python3 -m venv foo
+
+3. Activate the venv by running
+
+        . foo/bin/activate
+
+
+3. In your terminal, run the command
 
         pip install -r requirements.txt
 
 
 # Launch Codes
+1. Change directory into the app folder
 
-1. Run the App:
+        cd Bug_Busters__victorc353_ethans175_marcoq4_qianjunz/app
+
+
+2. Run the App:
 
         $ python3 __init__.py
