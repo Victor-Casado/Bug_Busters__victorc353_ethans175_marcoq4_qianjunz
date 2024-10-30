@@ -26,15 +26,15 @@ def storiesColumn():
     storyIDs = c.execute("SELECT storyID FROM storyInfo")
     listIDs = storyIDs.fetchall()
     print(listIDs)
-    if len(listIDs) == 0:
+    if len(listIDs) != 0:
         fin += ", "
     for i in range(len(listIDs)):
-        fin += f'{list(listIDs[i])[0]} TEXT'
+        fin += f'{list(listIDs[i])[0]} BOOLEAN'
         if i != len(listIDs) - 1:
             fin += ", "
     return fin
 print(storiesColumn())
-c.execute(f'CREATE TABLE storesContributed (userID INTEGER);')
+c.execute(f'CREATE TABLE storesContributed (userID INTEGER{storiesColumn()});')
 latestUID = 0
 latestUID = 0
 
