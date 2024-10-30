@@ -33,7 +33,7 @@
 
 3. In your terminal, run the command
 
-        pip install -r requirements.txt
+        pip install -r Bug_Busters__victorc353_ethans175_marcoq4_qianjunz/requirements.txt
 
 
 # Launch Codes
