@@ -13,3 +13,6 @@ ethanS --- 2024-10-29 10:57
 * Finished drawing and uploading team flag!
 victorC --- 2024-10-29 11:00
 Basic tepmlating of login, home, and signup pages
+marcoQ --- 2024-10-29 22:26
+* Completed basic functionality of python file handling database and creation of tables
+* Will update as needed when we reconvene tomorrow
