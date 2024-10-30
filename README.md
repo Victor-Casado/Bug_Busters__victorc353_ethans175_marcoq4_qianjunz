@@ -28,7 +28,11 @@
 
 
 # Launch Codes
+1. Change directory into the app folder
 
-1. Run the App:
+        cd Bug_Busters__victorc353_ethans175_marcoq4_qianjunz/app
+
+
+2. Run the App:
 
         $ python3 __init__.py
