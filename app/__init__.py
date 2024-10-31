@@ -53,7 +53,7 @@ def edit_story(story_id):
     if 'username' not in session:
         return redirect(url_for('login'))
 
-    return render_template('editStory.html', story=story)
+    return render_template('editStory.html', story=story) #story should ONLY be the most recent entry
 
 @app.route('/logout')
 def logout():
