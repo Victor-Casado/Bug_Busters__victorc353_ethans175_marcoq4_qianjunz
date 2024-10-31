@@ -1,28 +1,28 @@
-ethanS --- 2024-10-28 01:15
+ethanS -- 2024-10-28 01:15
 * Added repo structure as detailed in p00 README.md
 * Added header to README
 * Modified Design Doc for some clarity
-qianjunZ --- 2024-10-28 01:36
+qianjunZ -- 2024-10-28 01:36
 * Modified Design Doc with nessesary changes (more indepth, simpler comprehension)
-victorC --- 2024-10-28 07:42
+victorC -- 2024-10-28 07:42
 * Modified design doc removing redundancy
-victorC and qianjunZ and marcoQ --- 2024-10-29 10:49
+victorC and qianjunZ and marcoQ -- 2024-10-29 10:49
 * Modified launch codes and installation guide section of README.MD
 * Added file structure into repo
-ethanS --- 2024-10-29 10:57
+ethanS -- 2024-10-29 10:57
 * Finished drawing and uploading team flag!
-victorC --- 2024-10-30 11:00
+victorC -- 2024-10-30 11:00
 Basic tepmlating of login, home, and signup pages
-marcoQ --- 2024-10-29 22:26
+marcoQ -- 2024-10-29 22:26
 * Completed basic functionality of python file handling database and creation of tables
 * Will update as needed when we reconvene tomorrow
-victorC --- 2024-10-30 11:01
+victorC -- 2024-10-30 11:01
 edited html files (pd ended will fix devlog)
-ethanS --- 2024-10-30 10:50
+ethanS -- 2024-10-30 10:50
 * Removed excessive dependencies
-victorC --- 2024-10-30 10:51
+victorC -- 2024-10-30 10:51
 * Updated README.md to include virtual environment and proper changes of directories
-ethanS --- 2024-10-30 21:24
+ethanS -- 2024-10-30 21:24
 * Began coding Flask/Python redirecting/template rendering.
 * Updated file system with additional html templates we will needed
 * Fixed file structure as templates was accidentally placed in static
