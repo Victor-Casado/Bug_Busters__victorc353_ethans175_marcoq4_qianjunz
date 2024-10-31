@@ -11,11 +11,11 @@ victorC and qianjunZ and marcoQ -- 2024-10-29 10:49
 * Added file structure into repo
 ethanS -- 2024-10-29 10:57
 * Finished drawing and uploading team flag!
-victorC -- 2024-10-30 11:00
-Basic tepmlating of login, home, and signup pages
 marcoQ -- 2024-10-29 22:26
 * Completed basic functionality of python file handling database and creation of tables
 * Will update as needed when we reconvene tomorrow
+victorC -- 2024-10-30 11:00
+Basic tepmlating of login, home, and signup pages
 victorC -- 2024-10-30 11:01
 edited html files (pd ended will fix devlog)
 ethanS -- 2024-10-30 10:50
