@@ -9,12 +9,6 @@ latestSID = 0
 
 c.execute("CREATE TABLE userInfo (userID INTEGER, username TEXT, password TEXT);")
 c.execute("CREATE TABLE storyInfo (storyID INTEGER, title TEXT, mainText TEXT, latestEntry TEXT, creator INTEGER);")
-def addUser(userID, username, password):
-    c.execute(f"INSERT INTO userInfo VALUES({userID}, '{username}', '{password}')")
-def addStory(storyID, title, mainText, latestEntry, creator):
-    c.execute(f"INSERT INTO storyInfo VALUES({storyID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
-addUser(latestUID, 'Maqarov', 'Ghidorah')
-addStory(latestSID, 'TheBeginning', 'This is the beginning', 'beginning', 'Maqarov')
 def storiesColumn():
     fin = ""
     storyIDs = c.execute("SELECT storyID FROM storyInfo")
@@ -22,13 +16,25 @@ def storiesColumn():
     if len(listIDs) != 0:
         fin += ", "
     for i in range(len(listIDs)):
-        fin += f'\'{list(listIDs[i])[0]}\' BOOLEAN'
+        fin += f'\'{list(listIDs[i])[0]}\' INTEGER'
         if i != len(listIDs) - 1:
             fin += ", "
     return fin
-#print(storiesColumn())
-#print(f'CREATE TABLE storesContributed (userID INTEGER{storiesColumn()});')
 c.execute(f'CREATE TABLE storesContributed (userID INTEGER{storiesColumn()});')
+
+def addUser(userID, username, password):
+    c.execute(f"INSERT INTO userInfo VALUES({userID}, '{username}', '{password}')")
+    addContribs(userID)
+def addStory(storyID, title, mainText, latestEntry, creator):
+    c.execute(f"INSERT INTO storyInfo VALUES({storyID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
+def addContribs(userID):
+    vals = f"INSERT INTO storiesContributed (userID"
+    if  != 0:
+        vals
+    c.execute(vals) 
+addUser(latestUID, 'Maqarov', 'Ghidorah')
+addStory(latestSID, 'TheBeginning', 'This is the beginning', 'beginning', 'Maqarov')
+
 
 db.commit()
 db.close()
