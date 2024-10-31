@@ -20,3 +20,7 @@ ethanS --- 2024-10-30 10:50
 * Removed excessive dependencies
 victorC --- 2024-10-30 10:51
 * Updated README.md to include virtual environment and proper changes of directories
+ethanS --- 2024-10-30 21:24
+* Began coding Flask/Python redirecting/template rendering.
+* Updated file system with additional html templates we will needed
+* Fixed file structure as templates was accidentally placed in static
