@@ -26,3 +26,6 @@ ethanS -- 2024-10-30 21:24
 * Began coding Flask/Python redirecting/template rendering.
 * Updated file system with additional html templates we will needed
 * Fixed file structure as templates was accidentally placed in static
+ethanS -- 2024-10-31 11:01
+* Debugged redirecting/rendering code in __init__.py
+* Fixed form action and method in html files
