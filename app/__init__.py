@@ -5,9 +5,9 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
 @app.route('/')
-def index():
+def home():
     if 'username' in session:
-        return redirect(url_for('home'))
+        return render_template('home.html', stories=stories)
     return redirect(url_for('login'))
 
 
@@ -16,6 +16,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        return redirect(url_for('home'))
 
     return render_template('login.html')
 
@@ -23,16 +24,9 @@ def login():
 def signup():
     if request.method == 'POST':
         username = request.form['username']
-        password = generate_password_hash(request.form['password'])
+        password = request.form['password']
 
     return render_template('signup.html')
-
-@app.route('/home')
-def home():
-    if 'username' not in session:
-        return redirect(url_for('login.html'))
-
-    return render_template('home.html', stories=stories)
 
 @app.route('/view/<int:story_id>')
 def view_story(story_id):
