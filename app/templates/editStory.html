@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title> STORY EDIT PAGE </title>
+  </head>
+
+  <body>
+    <h1>
+      Howdy, friends!
+    </h1>
+
+    <p>
+      The most recent entry is: <br>
+      {{lastentry}}
+  </p>
+    <h3>
+      Enter your new entry.
+    </h3>
+    <form action="/edit">
+      <input type="text" name="entry">
+      <input type="submit" name="sub1">
+    </form>
+    <br>
+    <p>
+      Or, you can go back:
+  </p>
+  <form action="/">
+    <input type="submit" name="sub1" value="Back to home">
+  </form>
+
+    <br>
+  </body>
+
+</html>
