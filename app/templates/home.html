@@ -16,6 +16,14 @@
         <input type="submit" name="sub1" value="Log Out">
       </form>
     </h3>
+
+    <p>
+      {% for i in stories%}
+      <form action=i[1]>
+        <input type="submit" name="sub1" value=i[0]>
+      </form>
+      {% endfor %} 
+    </p>
   </body>
 
 </html>

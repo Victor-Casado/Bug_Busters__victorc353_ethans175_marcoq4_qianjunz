@@ -7,7 +7,8 @@ app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 @app.route('/')
 def home():
     if 'username' in session:
-        return render_template('home.html', stories=stories)
+        return render_template('home.html', stories=stories) #list of 2d strings which are story titles
+        #as the first entry and /view/id as the second entry (a string)
     return redirect(url_for('login'))
 
 
