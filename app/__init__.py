@@ -1,46 +1,64 @@
-from flask import Flask
-from flask import render_template   
-from flask import request
-from flask import session
-from flask import redirect
-from flask import url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+import sqlite3
 
 app = Flask(__name__)
-app.secret_key = 'haha'
+app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
 @app.route('/')
 def index():
     if 'username' in session:
-        return redirect(url_for('response'))
+        return redirect(url_for('home'))
     return redirect(url_for('login'))
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
-        if username:  # If a username is provided, log in the user
-            session['username'] = username
-            return redirect(url_for('response'))
-        else:
-            return 'Please enter a username!'
+        password = request.form['password']
+
     return render_template('login.html')
 
-# Allow only GET requests to the response page
-@app.route('/response', methods=['GET'])
-def response():
-    if 'username' in session:
-        return render_template('response.html', username=session['username'])
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = generate_password_hash(request.form['password'])
+
+    return render_template('signup.html')
+
+@app.route('/home')
+def home():
+    if 'username' not in session:
+        return redirect(url_for('login.html'))
+
+    return render_template('home.html', stories=stories)
+
+@app.route('/view/<int:story_id>')
+def view_story(story_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    return render_template('viewStory.html', story=story)
+
+@app.route('/create', methods=['GET', 'POST'])
+def create_story():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    return render_template('createStory.html')
+
+@app.route('/edit/<int:story_id>', methods=['GET', 'POST'])
+def edit_story(story_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    return render_template('editStory.html', story=story)
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
     return redirect(url_for('login'))
 
-@app.route('/logout', methods=['GET'])
-def logout():
-    if 'username' in session:
-        user = session['username']
-        session.pop('username', None)
-        return render_template('logout.html', username=user)
-    return redirect(url_for('response'))
-
-if __name__ == "__main__": #false if this file imported as module
-    #enable debugging, auto-restarting of server when this file is modified
-    app.debug = True 
-    app.run()
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -16,12 +16,13 @@ Basic tepmlating of login, home, and signup pages
 marcoQ --- 2024-10-29 22:26
 * Completed basic functionality of python file handling database and creation of tables
 * Will update as needed when we reconvene tomorrow
-<<<<<<< HEAD
 victorC --- 2024-10-30 11:01
 edited html files (pd ended will fix devlog)
-=======
 ethanS --- 2024-10-30 10:50
 * Removed excessive dependencies
 victorC --- 2024-10-30 10:51
 * Updated README.md to include virtual environment and proper changes of directories
->>>>>>> 488092510ea31149c8adbf608a67d77fdb574db3
+ethanS --- 2024-10-30 21:24
+* Began coding Flask/Python redirecting/template rendering.
+* Updated file system with additional html templates we will needed
+* Fixed file structure as templates was accidentally placed in static
