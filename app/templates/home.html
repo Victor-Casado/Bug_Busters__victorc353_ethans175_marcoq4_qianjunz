@@ -17,13 +17,14 @@
       </form>
     </h3>
 
-    <p>
-      {% for i in stories%}
-      <form action=i[1]>
-        <input type="submit" name="sub1" value=i[0]>
-      </form>
-      {% endfor %} 
+    <p><br>
+      Which story would you like to view?
     </p>
+      {% for i in stories%}
+      <form action="/view">
+        <button name="id" type="submit" value={{i[1]}}>{{i[0]}}</button>
+      </form>
+      {% endfor %}
   </body>
 
 </html>

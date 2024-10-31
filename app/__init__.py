@@ -8,7 +8,7 @@ app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 def home():
     if 'username' in session:
         return render_template('home.html', stories=stories) #list of 2d strings which are story titles
-        #as the first entry and /view/id as the second entry (a string)
+        #as the first entry and id as the second entry
     return redirect(url_for('login'))
 
 
@@ -29,7 +29,7 @@ def signup():
 
     return render_template('signup.html')
 
-@app.route('/view/<int:story_id>')
+@app.route('/view')
 def view_story(story_id):
     if 'username' not in session:
         return redirect(url_for('login'))
@@ -43,7 +43,7 @@ def create_story():
 
     return render_template('createStory.html')
 
-@app.route('/edit/<int:story_id>', methods=['GET', 'POST'])
+@app.route('/edit', methods=['GET', 'POST'])
 def edit_story(story_id):
     if 'username' not in session:
         return redirect(url_for('login'))
