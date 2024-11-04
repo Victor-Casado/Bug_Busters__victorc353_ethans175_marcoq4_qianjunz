@@ -33,13 +33,13 @@ def addUser(username, password): #Called by __init__.py when user signs up
     global latestUID
     latestUID += 1
     c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
-    addContribs(userID)
+    addContribs(latestUID)
 def addStory(storyID, title, mainText, latestEntry, creator): #Called by __init__.py when new story is created
     global latestSID
     latestSID += 1
     c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
-    addStoryColumn(storyID)
-    updateContribs(creator, storyID)
+    addStoryColumn(latestID)
+    updateContribs(creator, latestSID)
 def updateStory(storyID, newText): #Called by __init__.py when new user makes an update to a story
     res = c.execute(f"SELECT mainTEXT FROM storyInfo WHERE storyID = {storyID}")
     mainText = list(res.fetchone())[0]
