@@ -35,19 +35,19 @@ def storiesColumn():
             fin += ", "
     print(fin)
     return fin
-c.execute(f'CREATE TABLE storesContributed (userID INTEGER{storiesColumn()});')
-'''def addContribs(userID):
-    vals = f"INSERT INTO storiesContributed VALUES(userID"
+c.execute(f'CREATE TABLE storiesContributed (userID INTEGER{storiesColumn()});')
+def addContribs(userID):
+    vals = f"INSERT INTO storiesContributed VALUES({userID}"
     if latestSID >= 0:
         vals += ", "
     for i in range(latestSID + 1):
-        vals += "\'0\'"
+        vals += "0"
         if i < latestSID:
             vals += ", "
     vals += ")"
     print(vals)
-    c.execute(vals)'''
-#addContribs('Maqarov')
+    c.execute(vals)
+addContribs(0)
 
 
 db.commit()
