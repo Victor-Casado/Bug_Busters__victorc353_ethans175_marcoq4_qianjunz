@@ -17,6 +17,7 @@ def addStoryColumn(storyID): #Called in the addStory function. Add column to sto
     c.execute(f"ALTER TABLE storiesContributed ADD \'{storyID}\' INTEGER")
 def addContribs(userID):
     vals = f"INSERT INTO storiesContributed VALUES({userID}"
+    print ("latestSID: " + str(latestSID))
     if latestSID >= 0:
         vals += ", "
     for i in range(latestSID + 1):
@@ -24,21 +25,17 @@ def addContribs(userID):
         if i < latestSID:
             vals += ", "
     vals += ")"
-    #print(vals)
+    print("Final execute: " + vals)
     c.execute(vals)
 def updateContribs(userID, storyID): #Called in the addStory function to update data value to a 1. Will also be called in __init__.py when user outside of creator adds something
     c.execute(f"UPDATE storiesContributed SET \'{storyID}\' = 1 WHERE userID = {userID}")
-def addUser(userID, username, password): #Called by __init__.py when user signs up
-    userID += 1
-    global latestUID
-    latestUID = userID
-    c.execute(f"INSERT INTO userInfo VALUES({userID}, '{username}', '{password}')")
+def addUser(username, password): #Called by __init__.py when user signs up
+    latestUID += 1
+    c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
     addContribs(userID)
 def addStory(storyID, title, mainText, latestEntry, creator): #Called by __init__.py when new story is created
-    storyID += 1
-    global latestSID
-    latestSID = storyID
-    c.execute(f"INSERT INTO storyInfo VALUES({storyID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
+    latestSID += 1
+    c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
     addStoryColumn(storyID)
     updateContribs(creator, storyID)
 def updateStory(storyID, newText): #Called by __init__.py when new user makes an update to a story
@@ -75,11 +72,11 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     res = c.execute(f"SELECT \'{storyID}\' FROM storiesContributed WHERE userID = {userID}")
     return (list(res.fetchone())[0])
 
-    return (list(res.fetchone())[0])
-addUser(latestUID, 'Maqarov', 'Ghidorah')
-addUser(latestUID, 'Tyson', 'Mike')
-addStory(latestSID, 'TheBeginning', 'This is the beginning', 'beginning', 0)
-addStory(latestSID, 'TheEnd', 'This is the end', 'the end', 1)
+#Test Functions: Will be commented when testing is finished
+addUser('Maqarov', 'Ghidorah')
+addUser('Tyson', 'Mike')
+addStory('TheBeginning', 'This is the beginning', 'beginning', 0)
+addStory('TheEnd', 'This is the end', 'the end', 1)
 updateStory(1, ' Hold your breath and count to ten')
 print(getPassword(0))
 print(hasWritten(0, 1))
