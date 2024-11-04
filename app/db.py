@@ -11,7 +11,7 @@ c.execute("CREATE TABLE userInfo (userID INTEGER, username TEXT, password TEXT);
 c.execute("CREATE TABLE storyInfo (storyID INTEGER, title TEXT, mainText TEXT, latestEntry TEXT, creator INTEGER);")
 c.execute(f'CREATE TABLE storiesContributed (userID INTEGER);')
 def addStoryColumn(storyID):
-    c.execute(f"ALTER TABLE storiesContributed ADD {storyID} INTEGER")
+    c.execute(f"ALTER TABLE storiesContributed ADD \'{storyID}\' INTEGER")
 def addContribs(userID):
     vals = f"INSERT INTO storiesContributed VALUES({userID}"
     if latestSID >= 0:
@@ -36,7 +36,7 @@ def addStory(storyID, title, mainText, latestEntry, creator):
     global latestSID
     latestSID = storyID
     c.execute(f"INSERT INTO storyInfo VALUES({storyID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
-    c.execute(f"UPDATE storiesContributed SET \'{storyID}\' = 1 WHERE userID = {creator}")
+    addStoryColumn(storyID)
     updateContribs(creator, storyID)
 
 addUser(latestUID, 'Maqarov', 'Ghidorah')
