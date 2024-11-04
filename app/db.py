@@ -44,16 +44,20 @@ def addStory(storyID, title, mainText, latestEntry, creator): #Called by __init_
 def updateStory(storyID, newText): #Called by __init__.py when new user makes an update to a story
     res = c.execute(f"SELECT mainTEXT FROM storyInfo WHERE storyID = {storyID}")
     mainText = list(res.fetchone())[0]
+    #print(mainText)
     newMainText = mainText + newText
     c.execute(f"UPDATE storyINFO SET latestEntry = '{newText}', mainText = '{newMainText}' WHERE storyID = {storyID}")
 
-#Functions that get data
-
+#Functions that get data. Will all be called by __init__.py directly
+def getPassword(userID):
+    res = c.execute(f"SELECT password FROM userInfo WHERE userID = {userID}")
+    return (list(res.fetchone())[0])
 addUser(latestUID, 'Maqarov', 'Ghidorah')
 addUser(latestUID, 'Tyson', 'Mike')
 addStory(latestSID, 'TheBeginning', 'This is the beginning', 'beginning', 0)
 addStory(latestSID, 'TheEnd', 'This is the end', 'the end', 1)
 updateStory(1, ' Hold your breath and count to ten')
+print(getPassword(0))
 
 
 db.commit()
