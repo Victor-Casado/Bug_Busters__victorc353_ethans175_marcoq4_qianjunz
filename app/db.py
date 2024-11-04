@@ -30,10 +30,12 @@ def addContribs(userID):
 def updateContribs(userID, storyID): #Called in the addStory function to update data value to a 1. Will also be called in __init__.py when user outside of creator adds something
     c.execute(f"UPDATE storiesContributed SET \'{storyID}\' = 1 WHERE userID = {userID}")
 def addUser(username, password): #Called by __init__.py when user signs up
+    global latestUID
     latestUID += 1
     c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
     addContribs(userID)
 def addStory(storyID, title, mainText, latestEntry, creator): #Called by __init__.py when new story is created
+    global latestSID
     latestSID += 1
     c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
     addStoryColumn(storyID)
