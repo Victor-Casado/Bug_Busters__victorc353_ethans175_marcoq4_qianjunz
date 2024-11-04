@@ -26,6 +26,9 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        password2 = request.form['password2']
+        if password == password2:
+            return redirect(url_for('home'))
 
     return render_template('signup.html')
 
