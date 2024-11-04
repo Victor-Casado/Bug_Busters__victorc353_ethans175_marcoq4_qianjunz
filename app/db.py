@@ -49,8 +49,32 @@ def updateStory(storyID, newText): #Called by __init__.py when new user makes an
     c.execute(f"UPDATE storyINFO SET latestEntry = '{newText}', mainText = '{newMainText}' WHERE storyID = {storyID}")
 
 #Functions that get data. Will all be called by __init__.py directly
+
+#userInfo get functions
 def getPassword(userID):
     res = c.execute(f"SELECT password FROM userInfo WHERE userID = {userID}")
+    return (list(res.fetchone())[0])
+def getUsername(userID):
+    res = c.execute(f"SELECT username FROM userInfo WHERE userID = {userID}")
+    return (list(res.fetchone())[0])
+#storyInfo get functions
+def getTitle(storyID):
+    res = c.execute(f"SELECT title FROM storyInfo WHERE storyID = {storyID}")
+    return (list(res.fetchone())[0])
+def getMainText(storyID):
+    res = c.execute(f"SELECT mainText FROM storyInfo WHERE storyID = {storyID}")
+    return (list(res.fetchone())[0])
+def getLatestEntry(storyID):
+    res = c.execute(f"SELECT latestEntry FROM storyInfo WHERE storyID = {storyID}")
+    return (list(res.fetchone())[0])
+def getCreator(userID):
+    res = c.execute(f"SELECT creator FROM storyInfo WHERE storyID = {storyID}")
+    return (list(res.fetchone())[0])
+#storiesContributed get functions
+def hasWritten(userID, storyID): #Will return 1 as an integer or null
+    res = c.execute(f"SELECT \'{storyID}\' FROM storiesContributed WHERE userID = {userID}")
+    return (list(res.fetchone())[0])
+
     return (list(res.fetchone())[0])
 addUser(latestUID, 'Maqarov', 'Ghidorah')
 addUser(latestUID, 'Tyson', 'Mike')
@@ -58,6 +82,7 @@ addStory(latestSID, 'TheBeginning', 'This is the beginning', 'beginning', 0)
 addStory(latestSID, 'TheEnd', 'This is the end', 'the end', 1)
 updateStory(1, ' Hold your breath and count to ten')
 print(getPassword(0))
+print(hasWritten(0, 1))
 
 
 db.commit()
