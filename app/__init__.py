@@ -6,8 +6,9 @@ app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
 @app.route('/')
 def home():
+    # CHECK DB FOR USER HERE
     if 'username' in session:
-        return render_template('home.html', stories=stories) #list of 2d strings which are story titles
+        render_template('home.html', stories=stories) #list of 2d strings which are story titles
         #as the first entry and id as the second entry
     return redirect(url_for('login'))
 
@@ -18,7 +19,6 @@ def login():
         username = request.form['username']
         password = request.form['password']
         return redirect(url_for('home'))
-
     return render_template('login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -27,6 +27,7 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         password2 = request.form['password2']
+        #STORE USER IN DB
         if password == password2:
             return redirect(url_for('home'))
 
