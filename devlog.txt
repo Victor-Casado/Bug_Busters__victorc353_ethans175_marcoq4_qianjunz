@@ -31,3 +31,5 @@ ethanS -- 2024-10-31 11:01
 * Fixed form action and method in html files
 marcoQ -- 2024-11-03 21:31
 * Completed sql database and associated functions in db.py (reconvene to implement alongside flask)
+victorC -- 2024-11-04 10:28
+* Added more stuff to templates... cannot test for now
