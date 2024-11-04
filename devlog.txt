@@ -35,3 +35,6 @@ victorC -- 2024-11-04 10:28
 * Added more stuff to templates... cannot test for now
 marcoQ with help of victorC -- 2024-11-04 10:57
 * Refactoring db.py for simplicity upon learning ALTER TABLE exists and can be used to add a column to an existing database
+ethanS -- 2024-11-04 10:57
+* Updated the redirecting after signup
+* Changed signup.html labeling
