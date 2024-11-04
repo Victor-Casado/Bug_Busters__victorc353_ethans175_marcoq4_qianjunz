@@ -7,10 +7,13 @@ c = db.cursor()               #facilitate db ops -- you will use cursor to trigg
 latestUID = -1
 latestSID = -1
 
+#Creating three tables
 c.execute("CREATE TABLE userInfo (userID INTEGER, username TEXT, password TEXT);")
 c.execute("CREATE TABLE storyInfo (storyID INTEGER, title TEXT, mainText TEXT, latestEntry TEXT, creator INTEGER);")
 c.execute(f'CREATE TABLE storiesContributed (userID INTEGER);')
-def addStoryColumn(storyID):
+
+#Functions that add data
+def addStoryColumn(storyID): #Called in the addStory function. Add column to storiesContributed corresponding to latestSID
     c.execute(f"ALTER TABLE storiesContributed ADD \'{storyID}\' INTEGER")
 def addContribs(userID):
     vals = f"INSERT INTO storiesContributed VALUES({userID}"
@@ -21,28 +24,36 @@ def addContribs(userID):
         if i < latestSID:
             vals += ", "
     vals += ")"
-    print(vals)
+    #print(vals)
     c.execute(vals)
-def updateContribs(userID, storyID):
+def updateContribs(userID, storyID): #Called in the addStory function to update data value to a 1. Will also be called in __init__.py when user outside of creator adds something
     c.execute(f"UPDATE storiesContributed SET \'{storyID}\' = 1 WHERE userID = {userID}")
-def addUser(userID, username, password):
+def addUser(userID, username, password): #Called by __init__.py when user signs up
     userID += 1
     global latestUID
     latestUID = userID
     c.execute(f"INSERT INTO userInfo VALUES({userID}, '{username}', '{password}')")
     addContribs(userID)
-def addStory(storyID, title, mainText, latestEntry, creator):
+def addStory(storyID, title, mainText, latestEntry, creator): #Called by __init__.py when new story is created
     storyID += 1
     global latestSID
     latestSID = storyID
     c.execute(f"INSERT INTO storyInfo VALUES({storyID}, '{title}', '{mainText}', '{latestEntry}', '{creator}')")
     addStoryColumn(storyID)
     updateContribs(creator, storyID)
+def updateStory(storyID, newText): #Called by __init__.py when new user makes an update to a story
+    res = c.execute(f"SELECT mainTEXT FROM storyInfo WHERE storyID = {storyID}")
+    mainText = list(res.fetchone())[0]
+    newMainText = mainText + newText
+    c.execute(f"UPDATE storyINFO SET latestEntry = '{newText}', mainText = '{newMainText}' WHERE storyID = {storyID}")
+
+#Functions that get data
 
 addUser(latestUID, 'Maqarov', 'Ghidorah')
 addUser(latestUID, 'Tyson', 'Mike')
 addStory(latestSID, 'TheBeginning', 'This is the beginning', 'beginning', 0)
 addStory(latestSID, 'TheEnd', 'This is the end', 'the end', 1)
+updateStory(1, ' Hold your breath and count to ten')
 
 
 db.commit()
