@@ -29,3 +29,5 @@ ethanS -- 2024-10-30 21:24
 ethanS -- 2024-10-31 11:01
 * Debugged redirecting/rendering code in __init__.py
 * Fixed form action and method in html files
+marcoQ -- 2024-11-03 21:31
+* Completed sql database and associated functions in db.py (reconvene to implement alongside flask)
