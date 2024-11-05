@@ -51,7 +51,7 @@ def signup():
         if password == password2:
             for i in userInfo:
                 stringUserData = userInfo[i]
-                stringUserData = stringUserData[1]
+                stringUserData = stringUserData[0]
                 if(stringUserData == username):
                     return redirect(url_for('home'))
             session['username'] = username
