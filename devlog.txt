@@ -38,3 +38,6 @@ marcoQ with help of victorC -- 2024-11-04 10:57
 ethanS -- 2024-11-04 10:57
 * Updated the redirecting after signup
 * Changed signup.html labeling
+marcoQ -- 2024-11-05 17:24
+* Finalized db.py and all associated functions with the database
+* Overhauled function structure to make it more accessible to flask usage
