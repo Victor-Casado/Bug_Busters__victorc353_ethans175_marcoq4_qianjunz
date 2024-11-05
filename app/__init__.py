@@ -33,28 +33,28 @@ def login():
             '''
         userInfo = db.allUserData()
         for i in userInfo:
-            if userInfo[i] == request.form['username'] + ',' + request.form['password']:
-                session[request.form['username']] = request.form['password']
+            if userInfo[i] == request.form['username'] + ', ' + request.form['password']:
+                session['username'] = request.form['username']
                 return redirect(url_for('home'))
             baseReturn = "Wrong username and password. Please try again."
     return render_template('login.html', statement = baseReturn)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    baseReturn = "Enter your desired username and password below to proceed."
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         password2 = request.form['password2']
         userInfo = db.allUserData()
-        baseReturn = "Enter your desired username and password below to proceed."
         #STORE USER IN DB
         if password == password2:
             for i in userInfo:
                 stringUserData = userInfo[i]
-                stringUserData = stringUserData.split(",")[0]
+                stringUserData = stringUserData[0]
                 if(stringUserData == username):
                     return redirect(url_for('home'))
-            session[username] = password
+            session['username'] = username
             db.addUser(username, password)
             return redirect(url_for('home'))
         else:
