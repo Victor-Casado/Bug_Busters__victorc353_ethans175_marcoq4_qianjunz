@@ -45,9 +45,9 @@ def addUser(username, password): #Called by __init__.py when user signs up
     global latestUID
     latestUID += 1
     c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
+    addContribs(latestUID)
     db.commit()
     db.close()
-    addContribs(latestUID)
 def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when new story is created
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
