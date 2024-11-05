@@ -38,6 +38,18 @@ marcoQ with help of victorC -- 2024-11-04 10:57
 ethanS -- 2024-11-04 10:57
 * Updated the redirecting after signup
 * Changed signup.html labeling
+qianjunZ -- 2024-11-04 23:50
+* imported db functions to main python code
+* wrote out the logic for the code and made the psuedo code for into
+qianjunZ -- 2024-11-05 11:05
+* made it so the html files took an input and that input can be edited on my python file 
+* coded the offical signup page logic
+qianjunZ -- 2024-11-05 13:00
+* coded the sessions into the code and attempted to fit it in with the imported code but some parts weren't working
+qianjunZ -- 2024-11-05 15:00
+* coded the login and signup page, everything works
+qianjunZ -- 2024-11-05 17:00
+* sorted out nuances with the code
 marcoQ -- 2024-11-05 17:24
 * Finalized db.py and all associated functions with the database
 * Overhauled function structure to make it more accessible to flask usage
