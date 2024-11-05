@@ -5,6 +5,10 @@ import db
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
+@app.route('/')
+def homeBase():
+    return redirect(url_for('home'))
+
 @app.route('/home')
 def home():
     #print('home working')
