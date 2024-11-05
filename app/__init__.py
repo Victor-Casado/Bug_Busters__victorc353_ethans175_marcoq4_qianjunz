@@ -11,7 +11,7 @@ def homeBase():
 
 @app.route('/home')
 def home():
-    #print('home working')
+    print('home working')
     # CHECK DB FOR USER HERE
     if 'username' in session:
         return render_template('home.html', user = session['username'])
@@ -31,7 +31,7 @@ def login():
         #takes all username + password checks if there is a match returns to login.html if there isnt
         #passUser = db.getPassword(request.form['username'])
         userInfo = db.allUserData()
-        #print(userInfo)
+        print(userInfo)
         for i in userInfo:
             if userInfo.get(i) == [request.form['username'], request.form['password']]:
                 session['username'] = request.form['username']
