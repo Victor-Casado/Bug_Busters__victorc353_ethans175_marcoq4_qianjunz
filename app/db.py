@@ -8,9 +8,12 @@ latestUID = -1
 latestSID = -1
 
 #Creating three tables
-c.execute("CREATE TABLE userInfo (userID INTEGER, username TEXT, password TEXT);")
-c.execute("CREATE TABLE storyInfo (storyID INTEGER, title TEXT, mainText TEXT, latestEntry TEXT, creator INTEGER);")
-c.execute(f'CREATE TABLE storiesContributed (userID INTEGER);')
+def createuserInfo():
+    c.execute("CREATE TABLE userInfo (userID INTEGER, username TEXT, password TEXT);")
+def createStoryInfo():
+    c.execute("CREATE TABLE storyInfo (storyID INTEGER, title TEXT, mainText TEXT, latestEntry TEXT, creator INTEGER);")
+def createStoriesContributed():
+    c.execute(f'CREATE TABLE storiesContributed (userID INTEGER);')
 
 #Functions that add data
 def addStoryColumn(storyID): #Called in the addStory function. Add column to storiesContributed corresponding to latestSID
@@ -76,6 +79,7 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     return (list(res.fetchone())[0])
 
 #Test Functions: Will be commented when testing is finished
+'''
 addUser('Maqarov', 'Ghidorah')
 addUser('Tyson', 'Mike')
 addStory('TheBeginning', 'This is the beginning', 'beginning', 0)
@@ -83,7 +87,7 @@ addStory('TheEnd', 'This is the end', 'the end', 1)
 updateStory(1, ' Hold your breath and count to ten', 1)
 print(getPassword(0))
 print(hasWritten(0, 1))
-print(allUserData())
+print(allUserData())'''
 
 
 db.commit()
