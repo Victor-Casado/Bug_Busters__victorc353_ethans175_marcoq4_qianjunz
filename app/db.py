@@ -144,7 +144,7 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     return (fin)
 
 #Test Functions: Will be commented when testing is finished
-
+'''
 createTables()
 addUser('Maqarov', 'Ghidorah')
 addUser('Tyson', 'Mike')
@@ -154,3 +154,4 @@ updateStory(1, ' Hold your breath and count to ten', 1)
 print(getPassword(0))
 print(hasWritten(0, 1))
 print(allUserData())
+'''
