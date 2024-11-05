@@ -5,11 +5,12 @@ import db
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
-@app.route('/')
+@app.route('/home')
 def home():
+    #print('home working')
     # CHECK DB FOR USER HERE
     if 'username' in session:
-        render_template('home.html')
+        return render_template('home.html', user = session['username'])
         #render_template('home.html', stories=stories) #list of 2d strings which are story titles
         #as the first entry and id as the second entry
     return redirect(url_for('login'))
@@ -25,15 +26,10 @@ def login():
     if request.method == 'POST':
         #takes all username + password checks if there is a match returns to login.html if there isnt
         #passUser = db.getPassword(request.form['username'])
-        '''
-        if passUser == null:
-            return redirect(url_for('home'))
-        if passUser == request.form['password']:
-            session[request.form['username']] = passUser
-            '''
         userInfo = db.allUserData()
+        #print(userInfo)
         for i in userInfo:
-            if userInfo[i] == request.form['username'] + ', ' + request.form['password']:
+            if userInfo.get(i) == [request.form['username'], request.form['password']]:
                 session['username'] = request.form['username']
                 return redirect(url_for('home'))
             baseReturn = "Wrong username and password. Please try again."
@@ -51,7 +47,7 @@ def signup():
         if password == password2:
             for i in userInfo:
                 stringUserData = userInfo[i]
-                stringUserData = stringUserData[0]
+                stringUserData = stringUserData[1]
                 if(stringUserData == username):
                     return redirect(url_for('home'))
             session['username'] = username
