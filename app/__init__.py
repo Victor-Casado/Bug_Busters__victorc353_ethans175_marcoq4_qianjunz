@@ -14,7 +14,7 @@ def home():
     print('home working')
     # CHECK DB FOR USER HERE
     if 'username' in session:
-        return render_template('home.html', user = session['username'])
+        return render_template('home.html', user = session['username'], stories = [])
         #render_template('home.html', stories=stories) #list of 2d strings which are story titles
         #as the first entry and id as the second entry
     return redirect(url_for('login'))
@@ -66,7 +66,7 @@ def signup():
 def view_story(story_id):
     if 'username' not in session:
         return redirect(url_for('login'))
-
+    #check if user can view the whole story or has to edit it
     return render_template('viewStory.html', story=story)
 
 @app.route('/create', methods=['GET', 'POST'])
