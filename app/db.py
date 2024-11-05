@@ -22,13 +22,19 @@ def addStoryColumn(storyID): #Called in the addStory function. Add column to sto
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     c.execute(f"ALTER TABLE storiesContributed ADD \'{storyID}\' INTEGER")
-    c.execute(f"UPDATE storiesContributed SET \'{storyID}\' = 0")
     db.commit()
     db.close()
 def addContribs(userID): #Called in addUser function.
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute(f"INSERT INTO storiesContributed VALUES({userID})")
+    fin = f"INSERT INTO storiesContributed VALUES({userID}, "
+    for i in range(latestSID + 1):
+        fin += "0"
+        if i < latestSID:
+            fin += ", "
+    fin += ")"
+    print(fin)
+    c.execute(fin)
     db.commit()
     db.close()
 def updateContribs(userID, storyID): #Called in the addStory and updateStory functions to update data value to a 1.
@@ -47,7 +53,6 @@ def addUser(username, password): #Called by __init__.py when user signs up
     c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
     db.commit()
     db.close()
-    addContribs(latestUID)
 def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when new story is created
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
@@ -57,6 +62,9 @@ def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when
     db.commit()
     db.close()
     addStoryColumn(latestSID)
+    #print("latest SID: " + str(latestSID))
+    for i in range(latestUID):
+        addContribs(i)
     updateContribs(creator, latestSID)
 def updateStory(storyID, newText, creator): #Called by __init__.py when new user makes an update to a story
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -144,7 +152,7 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     return (fin)
 
 #Test Functions: Will be commented when testing is finished
-
+'''
 createTables()
 addUser('Maqarov', 'Ghidorah')
 addUser('Tyson', 'Mike')
@@ -153,4 +161,4 @@ addStory('TheEnd', 'This is the end', 'the end', 1)
 updateStory(1, ' Hold your breath and count to ten', 1)
 print(getPassword(0))
 print(hasWritten(0, 1))
-print(allUserData())
+print(allUserData())'''
