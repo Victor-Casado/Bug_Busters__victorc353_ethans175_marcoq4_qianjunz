@@ -14,7 +14,7 @@ def home():
     print('home working')
     # CHECK DB FOR USER HERE
     if 'username' in session:
-        return render_template('home.html', user = session['username'], stories = [])
+        return render_template('home.html', user = session['username'], stories = db.getStoriesArray())
         #render_template('home.html', stories=stories) #list of 2d strings which are story titles
         #as the first entry and id as the second entry
     return redirect(url_for('login'))
@@ -35,6 +35,7 @@ def login():
         for i in userInfo:
             if userInfo.get(i) == [request.form['username'], request.form['password']]:
                 session['username'] = request.form['username']
+                session['id'] = i
                 return redirect(url_for('home'))
             baseReturn = "Wrong username and password. Please try again."
     return render_template('login.html', statement = baseReturn)
@@ -56,6 +57,7 @@ def signup():
                     return redirect(url_for('home'))
             session['username'] = username
             db.addUser(username, password)
+            session['id']=db.getLatestUID
             return redirect(url_for('home'))
         else:
             baseReturn = "Your desired username and password do not match please try again."
@@ -67,10 +69,15 @@ def view_story(story_id):
     if 'username' not in session:
         return redirect(url_for('login'))
     #check if user can view the whole story or has to edit it
-    return render_template('viewStory.html', story=story)
+    if(not db.hasWritten(session['id'], story_id)):
+        return edit_story(story_id)
+    return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id))
 
 @app.route('/create', methods=['GET', 'POST'])
 def create_story():
+    if request.method == 'POST':
+        db.addStory(request.form['title'], "", request.form['entry'], session['id'])
+        return view_story(db.getLatestSID)
     if 'username' not in session:
         return redirect(url_for('login'))
 
@@ -80,12 +87,13 @@ def create_story():
 def edit_story(story_id):
     if 'username' not in session:
         return redirect(url_for('login'))
-
-    return render_template('editStory.html', story=story) #story should ONLY be the most recent entry
+    
+    return render_template('editStory.html', lastentry=db.getLatestEntry(story_id)) #story should ONLY be the most recent entry
 
 @app.route('/logout')
 def logout():
     session.pop('username', None)
+    session.pop('id', None)
     return redirect(url_for('login'))
 
 if __name__ == '__main__':

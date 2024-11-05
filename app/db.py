@@ -55,6 +55,10 @@ def addUser(username, password): #Called by __init__.py when user signs up
     c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
     db.commit()
     db.close()
+def getLatestUID():
+    return latestUID
+def getLatestSID():
+    return latestSID
 def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when new story is created
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
@@ -152,6 +156,14 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     db.commit()
     db.close()
     return (fin)
+
+def getStoriesArray(): #used by homepage
+    i = 0
+    array = []
+    while i <= latestSID:
+        array.append([getTitle(i),i])
+        i+=1
+    return array
 
 #Test Functions: Will be commented when testing is finished
 '''
