@@ -51,10 +51,8 @@ def signup():
         if password == password2:
             for i in userInfo:
                 stringUserData = userInfo[i]
-                stringUserData.split(",")
-                if(stringUserData[0] == username):
-                    return redirect(url_for('home'))
-                if(stringUserData[1] == password):
+                stringUserData = stringUserData.split(",")[0]
+                if(stringUserData == username):
                     return redirect(url_for('home'))
             session[username] = password
             db.addUser(username, password)
