@@ -21,16 +21,23 @@ def login():
     #    username = request.form['username']
     #    password = request.form['password']
     #    return redirect(url_for('home'))
+    baseReturn = "Enter your username and password below to proceed."
     if request.method == 'POST':
-        #takes the username find the password
-        #if password doesnt exist reset
-        #if password is same as input password add to session
-        passUser = db.getPassword(request.form['username'])
+        #takes all username + password checks if there is a match returns to login.html if there isnt
+        #passUser = db.getPassword(request.form['username'])
+        '''
         if passUser == null:
             return redirect(url_for('home'))
         if passUser == request.form['password']:
             session[request.form['username']] = passUser
-    return render_template('login.html')
+            '''
+        userInfo = db.allUserData()
+        for i in userInfo:
+            if userInfo[i] == request.form['username'] + ',' + request.form['password']:
+                session[request.form['username']] = request.form['password']
+                return redirect(url_for('home'))
+            baseReturn = "Wrong username and password. Please try again."
+    return render_template('login.html', statement = baseReturn)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -38,11 +45,24 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         password2 = request.form['password2']
+        userInfo = db.allUserData()
+        baseReturn = "Enter your desired username and password below to proceed."
         #STORE USER IN DB
         if password == password2:
+            for i in userInfo:
+                stringUserData = userInfo[i]
+                stringUserData.split(",")
+                if(stringUserData[0] == username):
+                    return redirect(url_for('home'))
+                if(stringUserData[1] == password):
+                    return redirect(url_for('home'))
+            session[username] = password
+            db.addUser(username, password)
             return redirect(url_for('home'))
+        else:
+            baseReturn = "Your desired username and password do not match please try again."
 
-    return render_template('signup.html')
+    return render_template('signup.html', statement = baseReturn)
 
 @app.route('/view')
 def view_story(story_id):
