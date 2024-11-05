@@ -53,9 +53,10 @@ def getUsername(userID):
 def allUserData():
     res = c.execute(f"SELECT * FROM userInfo")
     userList = res.fetchall()
+    userDict = {}
     for i in range(len(userList)):
-        userList[i] = list(userList[i])
-    return (userList)
+        userDict[list(userList[i])[0]] = list(userList[i])[1], list(userList[i])[2]
+    return (userDict)
 #storyInfo get functions
 def getTitle(storyID):
     res = c.execute(f"SELECT title FROM storyInfo WHERE storyID = {storyID}")
