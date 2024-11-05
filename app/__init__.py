@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
-import db.py
+import db
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
@@ -9,7 +9,8 @@ app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 def home():
     # CHECK DB FOR USER HERE
     if 'username' in session:
-        render_template('home.html', stories=stories) #list of 2d strings which are story titles
+        render_template('home.html')
+        #render_template('home.html', stories=stories) #list of 2d strings which are story titles
         #as the first entry and id as the second entry
     return redirect(url_for('login'))
 
@@ -21,10 +22,14 @@ def login():
     #    password = request.form['password']
     #    return redirect(url_for('home'))
     if request.method == 'POST':
-        #for loop to check if username is in db
-        #if to check if username and password both match
-        #redirect(url_for('home')
-
+        #takes the username find the password
+        #if password doesnt exist reset
+        #if password is same as input password add to session
+        passUser = db.getPassword(request.form['username'])
+        if passUser == null:
+            return redirect(url_for('home'))
+        if passUser == request.form['password']:
+            session[request.form['username']] = passUser
     return render_template('login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
