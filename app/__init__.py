@@ -28,8 +28,7 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if(db.getLatestUID() == -1):
-        return redirect(url_for('logout'))
+
     #if request.method == 'POST':
     #    username = request.form['username']
     #    password = request.form['password']
@@ -50,8 +49,6 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if(db.getLatestUID() == -1):
-        return redirect(url_for('logout'))
     baseReturn = "Enter your desired username and password below to proceed."
     if request.method == 'POST':
         username = request.form['username']
