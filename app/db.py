@@ -171,7 +171,7 @@ def getStoriesArray(): #used by homepage
     return array
 
 #Test Functions: Will be commented when testing is finished
-
+'''
 createTables()
 addUser('Maqarov', 'Ghidorah')
 addUser('Tyson', 'Mike')
@@ -182,5 +182,5 @@ updateStory(1, ' Hold your breath and count to ten', 1)
 print(getPassword(0))
 print(hasWritten(0, 1))
 print(hasWritten(2, 0))
-print(allUserData())
+print(allUserData())'''
 
