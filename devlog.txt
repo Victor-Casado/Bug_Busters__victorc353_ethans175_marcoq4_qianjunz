@@ -71,3 +71,8 @@ victorC -- 2024-11-05 22:10
 ethanS -- 2024-11-05 22:46
 * Bug tested our code with the rest of our group (victorC, qianjunZ, marcoQ)
 * Found bugs with creating infinite users, bad parameters for creating stories, new line outputs, and story overwriting
+victorC -- 2024-11-05 22:46
+*Fixed bugs for infinite users and story overwriting
+*Bug with the "'" character still persists
+victorC -- 2024-11-6 10:30
+*Updated readme
