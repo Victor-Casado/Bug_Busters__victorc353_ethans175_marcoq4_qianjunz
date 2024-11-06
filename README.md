@@ -26,7 +26,7 @@
  
         python3 -m venv foo
 
-3. Activate the venv by running
+3. Activate the virtual environment by running
 
         . foo/bin/activate
 
