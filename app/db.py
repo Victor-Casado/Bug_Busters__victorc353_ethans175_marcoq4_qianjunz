@@ -69,7 +69,7 @@ def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when
     db.close()
     addStoryColumn(latestSID)
     #print("latest SID: " + str(latestSID))
-    for i in range(latestUID):
+    for i in range(latestUID + 1):
         addContribs(i)
     updateContribs(creator, latestSID)
 def updateStory(storyID, newText, creator): #Called by __init__.py when new user makes an update to a story
@@ -152,6 +152,8 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     res = c.execute(f"SELECT \'{storyID}\' FROM storiesContributed WHERE userID = {userID}")
+    cur = db.cursor()
+    print(cur.fetchall())
     fin = list(res.fetchone())[0]
     db.commit()
     db.close()
