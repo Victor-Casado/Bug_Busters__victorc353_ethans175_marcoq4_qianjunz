@@ -79,6 +79,7 @@ def view_story():
     story_id = session['storyID']
     if not request.args.get('id') is None:
         story_id=request.args.get('id')
+        session['storyID'] = story_id
     if 'username' not in session:
         return redirect(url_for('login'))
     #check if user can view the whole story or has to edit it
