@@ -98,6 +98,7 @@ def edit_story():
     story_id = session['storyID']
     if request.method == 'POST':
         db.updateStory(story_id, request.form['entry'], session['id'])
+        return redirect(url_for('view_story'))
     if 'username' not in session:
         return redirect(url_for('login'))
     
