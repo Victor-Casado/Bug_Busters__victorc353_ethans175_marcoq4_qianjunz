@@ -55,7 +55,19 @@ def addUser(username, password): #Called by __init__.py when user signs up
     global latestUID
     latestUID += 1
     #print("latest UID (printed from addUser): " + str(latestUID))
-    c.execute(f"INSERT INTO userInfo VALUES({latestUID}, \"{username}\", \"{password}\")")
+    i = 0
+    while i < len(username):
+        if (username[i] == '"'):
+            username = username[:i] + '\"' + username[i + 1:]
+            i += 1
+        i += 1
+    j = 0
+    while j < len(password):
+        if (password[j] == '"'):
+            password = password[:j] + '\"' + password[j + 1:]
+            j += 1
+        j += 1
+    c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '"+ username + "', '" + password + "')")
     db.commit()
     db.close()
     addContribs(latestUID)
@@ -69,9 +81,13 @@ def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when
     global latestSID
     latestSID += 1
     i = 0
-        
+    while i < len(latestEntry):
+        if (latestEntry[i] == '"'):
+            latestEntry = latestEntry[:i] + '\"' + latestEntry[i + 1:]
+            i += 1
+        i += 1
     print(latestEntry)
-    c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, \"{title}\", \"{mainText}\", \"{latestEntry}\", {creator})")
+    c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, '{title}', '{mainText}', '" + latestEntry + "'" + f", {creator})")
     db.commit()
     db.close()
     addStoryColumn(latestSID)
@@ -86,7 +102,19 @@ def updateStory(storyID, newText, creator): #Called by __init__.py when new user
     oldentry = list(res.fetchone())[0]
     #print(mainText)
     newMainText = mainText + oldentry
-    c.execute(f"UPDATE storyINFO SET latestEntry = \"{newText}\", mainText = \"{newMainText}\", creator = {creator} WHERE storyID = {storyID}")
+    i = 0
+    while i < len(newMainText):
+        if (newMainText[i] == '"'):
+            newMainText = newMainText[:i] + '\"' + newMainText[i + 1:]
+            i += 1
+        i += 1
+    j = 0
+    while j < len(newText):
+        if (newText[j] == '"'):
+            newText = newText[:j] + '\"' + newText[j + 1:]
+            j += 1
+        j += 1
+    c.execute(f"UPDATE storyINFO SET latestEntry = '" + newText + "', mainText = '" + newMainText + f"', creator = {creator} WHERE storyID = {storyID}")
     db.commit()
     db.close()
     updateContribs(creator, storyID)
