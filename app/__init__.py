@@ -9,10 +9,14 @@ app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
 @app.route('/')
 def homeBase():
+    if(db.getLatestUID() == -1):
+        return redirect(url_for('logout'))
     return redirect(url_for('home'))
 
 @app.route('/home')
 def home():
+    if(db.getLatestUID() == -1):
+        return redirect(url_for('logout'))
     print('home working')
     # CHECK DB FOR USER HERE
     if 'username' in session:
@@ -24,6 +28,8 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if(db.getLatestUID() == -1):
+        return redirect(url_for('logout'))
     #if request.method == 'POST':
     #    username = request.form['username']
     #    password = request.form['password']
@@ -44,6 +50,8 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if(db.getLatestUID() == -1):
+        return redirect(url_for('logout'))
     baseReturn = "Enter your desired username and password below to proceed."
     if request.method == 'POST':
         username = request.form['username']
@@ -69,6 +77,8 @@ def signup():
 @app.route('/view', methods=['GET', 'POST'])
 def view_story():
     #print(session)
+    if(db.getLatestUID() == -1):
+        return redirect(url_for('logout'))
     story_id = session['storyID']
     if not request.args.get('id') is None:
         story_id=request.args.get('id')
@@ -82,6 +92,8 @@ def view_story():
 
 @app.route('/create', methods=['GET', 'POST'])
 def create_story():
+    if(db.getLatestUID() == -1):
+        return redirect(url_for('logout'))
     if request.method == 'POST':
         db.addStory(request.form['title'], "", request.form['entry'], session['id'])
         session['storyID'] = db.getLatestSID()
@@ -93,6 +105,8 @@ def create_story():
 
 @app.route('/edit', methods=['GET', 'POST'])
 def edit_story():
+    if(db.getLatestUID() == -1):
+        return redirect(url_for('logout'))
     story_id = session['storyID']
     if request.method == 'POST':
         db.updateStory(story_id, request.form['entry'], session['id'])

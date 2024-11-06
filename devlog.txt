@@ -59,8 +59,12 @@ victorC -- 2024-11-05 20:16
 * very extensive debugging of signing up and viewing stories
 * created functions in db.py to get different bits of info from the database
 * passed on info from database to html files for every template
-marcoQ -- 2024-11-05 ??
-* database functions updated to accurately express if a user has edited a page
 victorC -- 2024-11-05 20:45
 * made it so view redirects to edit story at appropriate times
 * (hopefully) made it so users can edit stories
+marcoQ and victorC -- 2024-11-05 22:02
+* database functions updated to accurately express if a user has edited a page
+* database haswritten fixed to appropriately display when a user has edited a story
+* fixed update story method to update story appropriately
+victorC -- 2024-11-05 22:10
+* auto logout upon launch
