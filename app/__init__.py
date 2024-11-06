@@ -69,7 +69,7 @@ def signup():
         else:
             baseReturn = "Your desired username and password do not match please try again."
 
-    return render_template('signup.html', statement = baseReturn)
+    return render_template('signup2.html', statement = baseReturn)
 
 @app.route('/view', methods=['GET', 'POST'])
 def view_story():
