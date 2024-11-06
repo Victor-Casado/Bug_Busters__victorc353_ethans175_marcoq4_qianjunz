@@ -53,6 +53,8 @@ def addUser(username, password): #Called by __init__.py when user signs up
     latestUID += 1
     #print("latest UID (printed from addUser): " + str(latestUID))
     c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
+    addContribs(latestUID)
+    updateContribs(creator, latestSID)
     db.commit()
     db.close()
 def getLatestUID():
@@ -68,10 +70,8 @@ def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when
     db.commit()
     db.close()
     addStoryColumn(latestSID)
-    #print("latest SID: " + str(latestSID))
-    for i in range(latestUID):
-        addContribs(i)
     updateContribs(creator, latestSID)
+    #print("latest SID: " + str(latestSID))
 def updateStory(storyID, newText, creator): #Called by __init__.py when new user makes an update to a story
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
