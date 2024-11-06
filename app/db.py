@@ -21,8 +21,8 @@ def createTables():
 def addStoryColumn(storyID): #Called in the addStory function. Add column to storiesContributed corresponding to latestSID
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute(f"ALTER TABLE storiesContributed ADD \'{storyID}\' INTEGER")
-    c.execute(f"UPDATE storiesContributed SET \'{storyID}\' = 0")
+    c.execute(f"ALTER TABLE storiesContributed ADD '{storyID}' INTEGER")
+    c.execute(f"UPDATE storiesContributed SET '{storyID}' = 0")
     db.commit()
     db.close()
 def addContribs(userID): #Called in addUser function.
@@ -44,7 +44,7 @@ def addContribs(userID): #Called in addUser function.
 def updateContribs(userID, storyID): #Called in the addStory and updateStory functions to update data value to a 1.
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    c.execute(f"UPDATE storiesContributed SET \'{storyID}\' = 1 WHERE userID = {userID}")
+    c.execute(f"UPDATE storiesContributed SET '{storyID}' = 1 WHERE userID = {userID}")
     db.commit()
     db.close()
 
@@ -154,13 +154,13 @@ def getCreator(userID):
 def hasWritten(userID, storyID): #Will return 1 as an integer or null
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    res = c.execute(f"SELECT \'{storyID}\' FROM storiesContributed WHERE userID = {userID}")
+    res = c.execute(f"SELECT * FROM storiesContributed")
     #cur = db.cursor()
     #print(cur.fetchall())
-    fin = list(res.fetchone())[0]
+    fin = list(res)
     db.commit()
     db.close()
-    return (fin)
+    return (fin[userID][storyID+1])
 
 def getStoriesArray(): #used by homepage
     i = 0
@@ -180,7 +180,8 @@ addStory('TheEnd', 'This is the end', 'the end', 1)
 addUser('KSI', 'Thick of It')
 updateStory(1, ' Hold your breath and count to ten', 1)
 print(getPassword(0))
-print(hasWritten(0, 1))
-print(hasWritten(2, 0))
+print(str(hasWritten(0, 0)))
+print(str(hasWritten(1, 1)))
+print(str(hasWritten(2, 1)))
 print(allUserData())'''
 
