@@ -27,7 +27,7 @@
     </p>
     
       {% for i in stories%}
-      <form action="/view">
+      <form action="/view" method="post">
         <button name="id" type="submit" value={{i[1]}}>{{i[0]}}</button>
       </form>
       {% endfor %}
