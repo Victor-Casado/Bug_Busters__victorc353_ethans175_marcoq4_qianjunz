@@ -46,3 +46,5 @@
 3. Run the App:
 
         $ python3 __init__.py
+
+4. Open the app in a browser by navigating to <a href="http://127.0.0.1:5001">127.0.0.1:5001</a>
