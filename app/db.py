@@ -55,7 +55,7 @@ def addUser(username, password): #Called by __init__.py when user signs up
     global latestUID
     latestUID += 1
     #print("latest UID (printed from addUser): " + str(latestUID))
-    c.execute(f"INSERT INTO userInfo VALUES({latestUID}, '{username}', '{password}')")
+    c.execute(f"INSERT INTO userInfo VALUES({latestUID}, \"{username}\", \"{password}\")")
     db.commit()
     db.close()
     addContribs(latestUID)
@@ -68,16 +68,10 @@ def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when
     c = db.cursor()
     global latestSID
     latestSID += 1
-    for i in range(len(latestEntry)):
-        print("string at index " + str(i) + ": " + latestEntry[i])
-        if (latestEntry[i] == "'"):
-            latestEntry = latestEntry[:i] + "\\" + latestEntry[i:]
-            print(latestEntry)
-            i += 1
-            print("new index: " + str(i))
+    i = 0
         
     print(latestEntry)
-    c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, '{title}', '{mainText}', '{latestEntry}', {creator})")
+    c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, \"{title}\", \"{mainText}\", \"{latestEntry}\", {creator})")
     db.commit()
     db.close()
     addStoryColumn(latestSID)
@@ -92,7 +86,7 @@ def updateStory(storyID, newText, creator): #Called by __init__.py when new user
     oldentry = list(res.fetchone())[0]
     #print(mainText)
     newMainText = mainText + oldentry
-    c.execute(f"UPDATE storyINFO SET latestEntry = '{newText}', mainText = '{newMainText}', creator = {creator} WHERE storyID = {storyID}")
+    c.execute(f"UPDATE storyINFO SET latestEntry = \"{newText}\", mainText = \"{newMainText}\", creator = {creator} WHERE storyID = {storyID}")
     db.commit()
     db.close()
     updateContribs(creator, storyID)
