@@ -53,3 +53,9 @@ qianjunZ -- 2024-11-05 17:00
 marcoQ -- 2024-11-05 17:24
 * Finalized db.py and all associated functions with the database
 * Overhauled function structure to make it more accessible to flask usage
+victorC -- 2024-11-05 20:16
+* made /view /edit and /create functions have functionality
+* tested /view and /create over website - only work for user who made story so waiting on marcoQ to be able to fix
+* very extensive debugging of signing up and viewing stories
+* created functions in db.py to get different bits of info from the database
+* passed on info from database to html files for every template
