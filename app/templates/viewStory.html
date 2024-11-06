@@ -2,27 +2,30 @@
 
 <html>
 
-  <head>
-    <title> STORY VIEW PAGE </title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View {{title}}</title>
+  <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+</head>
 
-  <body>
-    <h1>
-      Howdy, friends!
-    </h1>
-
-    <p>
-      The story so far is: <br>
-      {{story}}<br>
-      {{lastentry}}
-    </p>
-    <p><br>
-      To go back:
-  </p>
-  <form action="/">
-    <input type="submit" name="sub1" value="Back to home">
-  </form>
-    <br>
+      <div class="container">
+        <div class="login-box">
+          <h2>
+            {{title}}
+          </h2>
+          <p>
+            {{story}}
+            {{lastentry}}
+          </p>
+            <div class="signup-link">
+              <div class="signup-link">
+                <a href="/">Back to Home</a>
+              </div>
+            </div>
+        </div>
+      </div>
   </body>
 
 </html>

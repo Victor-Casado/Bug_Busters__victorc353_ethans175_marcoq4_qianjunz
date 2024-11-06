@@ -86,7 +86,7 @@ def view_story():
     if(db.hasWritten(session['id'], story_id) == 0):
         return redirect(url_for('edit_story'))
     #print(story_id)
-    return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id))
+    return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id)+"\n", title=db.getTitle(story_id))
 
 @app.route('/create', methods=['GET', 'POST'])
 def create_story():
