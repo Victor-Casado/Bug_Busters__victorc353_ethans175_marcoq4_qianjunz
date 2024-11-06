@@ -45,7 +45,7 @@ def login():
                 session['id'] = i
                 return redirect(url_for('home'))
             baseReturn = "Wrong username and password. Please try again."
-    return render_template('login.html', statement = baseReturn)
+    return render_template('login2.html', statement = baseReturn)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -111,7 +111,7 @@ def edit_story():
         return redirect(url_for('view_story'))
     if 'username' not in session:
         return redirect(url_for('login'))
-    
+
     return render_template('editStory.html', lastentry=db.getLatestEntry(story_id)) #story should ONLY be the most recent entry
 
 @app.route('/logout')
