@@ -79,8 +79,10 @@ def updateStory(storyID, newText, creator): #Called by __init__.py when new user
     c = db.cursor()
     res = c.execute(f"SELECT mainTEXT FROM storyInfo WHERE storyID = {storyID}")
     mainText = list(res.fetchone())[0]
+    res = c.execute(f"SELECT latestEntry FROM storyInfo WHERE storyID = {storyID}")
+    oldentry = list(res.fetchone())[0]
     #print(mainText)
-    newMainText = mainText + newText
+    newMainText = mainText + oldentry
     c.execute(f"UPDATE storyINFO SET latestEntry = '{newText}', mainText = '{newMainText}', creator = {creator} WHERE storyID = {storyID}")
     db.commit()
     db.close()
@@ -160,7 +162,12 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     fin = list(res)
     db.commit()
     db.close()
-    return (fin[userID][storyID+1])
+    print(fin)
+    print(fin[userID])
+    print(storyID)
+    print(userID)
+    print(fin[userID][int(storyID)+1])
+    return (fin[userID][int(storyID)+1])
 
 def getStoriesArray(): #used by homepage
     i = 0

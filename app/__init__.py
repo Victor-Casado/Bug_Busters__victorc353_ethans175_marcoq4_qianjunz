@@ -4,8 +4,6 @@ import db
 import os
 os.remove("onceuponatable.db")
 db.createTables()
-
-
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
@@ -77,7 +75,7 @@ def view_story():
     if 'username' not in session:
         return redirect(url_for('login'))
     #check if user can view the whole story or has to edit it
-    if(db.hasWritten(session['id'], story_id) == "0"):
+    if(db.hasWritten(session['id'], story_id) == 0):
         return redirect(url_for('edit_story'))
     #print(story_id)
     return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id))
