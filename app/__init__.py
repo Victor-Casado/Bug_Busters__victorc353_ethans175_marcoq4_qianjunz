@@ -96,6 +96,8 @@ def create_story():
 @app.route('/edit', methods=['GET', 'POST'])
 def edit_story():
     story_id = session['storyID']
+    if request.method == 'POST':
+        db.updateStory(story_id, request.form['entry'], session['id'])
     if 'username' not in session:
         return redirect(url_for('login'))
     
