@@ -68,6 +68,15 @@ def addStory(title, mainText, latestEntry, creator): #Called by __init__.py when
     c = db.cursor()
     global latestSID
     latestSID += 1
+    for i in range(len(latestEntry)):
+        print("string at index " + str(i) + ": " + latestEntry[i])
+        if (latestEntry[i] == "'"):
+            latestEntry = latestEntry[:i] + "\\" + latestEntry[i:]
+            print(latestEntry)
+            i += 1
+            print("new index: " + str(i))
+        
+    print(latestEntry)
     c.execute(f"INSERT INTO storyInfo VALUES({latestSID}, '{title}', '{mainText}', '{latestEntry}', {creator})")
     db.commit()
     db.close()
