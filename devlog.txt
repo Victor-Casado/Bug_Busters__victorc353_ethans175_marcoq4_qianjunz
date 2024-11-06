@@ -68,3 +68,6 @@ marcoQ and victorC -- 2024-11-05 22:02
 * fixed update story method to update story appropriately
 victorC -- 2024-11-05 22:10
 * auto logout upon launch
+ethanS -- 2024-11-05 22:46
+* Bug tested our code with the rest of our group (victorC, qianjunZ, marcoQ)
+* Found bugs with creating infinite users, bad parameters for creating stories, new line outputs, and story overwriting
