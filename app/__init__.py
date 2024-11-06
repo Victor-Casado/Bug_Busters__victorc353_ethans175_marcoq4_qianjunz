@@ -5,6 +5,7 @@ import os
 os.remove("onceuponatable.db")
 db.createTables()
 
+
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 
@@ -67,27 +68,35 @@ def signup():
 
     return render_template('signup.html', statement = baseReturn)
 
-@app.route('/view')
-def view_story(story_id):
+@app.route('/view', methods=['GET', 'POST'])
+def view_story():
+    #print(session)
+    story_id = session['storyID']
+    if not request.args.get('id') is None:
+        #print("aaaaaaaa")
+        story_id=request.args.get('id')
     if 'username' not in session:
         return redirect(url_for('login'))
     #check if user can view the whole story or has to edit it
     if(db.hasWritten(session['id'], story_id) == 0):
-        return edit_story(story_id)
+        return redirect(url_for('edit'))
+    #print(story_id)
     return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id))
 
 @app.route('/create', methods=['GET', 'POST'])
 def create_story():
     if request.method == 'POST':
         db.addStory(request.form['title'], "", request.form['entry'], session['id'])
-        return view_story(db.getLatestSID())
+        session['storyID'] = db.getLatestSID()
+        return redirect(url_for('view_story'))
     if 'username' not in session:
         return redirect(url_for('login'))
 
     return render_template('createStory.html')
 
 @app.route('/edit', methods=['GET', 'POST'])
-def edit_story(story_id):
+def edit_story():
+    story_id = session['storyID']
     if 'username' not in session:
         return redirect(url_for('login'))
     

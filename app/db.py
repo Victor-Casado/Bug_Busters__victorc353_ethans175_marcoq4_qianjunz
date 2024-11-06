@@ -152,8 +152,8 @@ def hasWritten(userID, storyID): #Will return 1 as an integer or null
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     res = c.execute(f"SELECT \'{storyID}\' FROM storiesContributed WHERE userID = {userID}")
-    cur = db.cursor()
-    print(cur.fetchall())
+    #cur = db.cursor()
+    #print(cur.fetchall())
     fin = list(res.fetchone())[0]
     db.commit()
     db.close()
