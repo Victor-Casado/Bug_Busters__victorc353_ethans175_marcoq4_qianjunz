@@ -73,13 +73,12 @@ def view_story():
     #print(session)
     story_id = session['storyID']
     if not request.args.get('id') is None:
-        #print("aaaaaaaa")
         story_id=request.args.get('id')
     if 'username' not in session:
         return redirect(url_for('login'))
     #check if user can view the whole story or has to edit it
-    if(db.hasWritten(session['id'], story_id) == 0):
-        return redirect(url_for('edit'))
+    if(db.hasWritten(session['id'], story_id) == "0"):
+        return redirect(url_for('edit_story'))
     #print(story_id)
     return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id))
 
