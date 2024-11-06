@@ -57,7 +57,7 @@ def signup():
                     return redirect(url_for('home'))
             session['username'] = username
             db.addUser(username, password)
-            session['id']=db.getLatestUID
+            session['id']=db.getLatestUID()
             return redirect(url_for('home'))
         else:
             baseReturn = "Your desired username and password do not match please try again."
@@ -77,7 +77,7 @@ def view_story(story_id):
 def create_story():
     if request.method == 'POST':
         db.addStory(request.form['title'], "", request.form['entry'], session['id'])
-        return view_story(db.getLatestSID)
+        return view_story(db.getLatestSID())
     if 'username' not in session:
         return redirect(url_for('login'))
 
