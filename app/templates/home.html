@@ -2,36 +2,39 @@
 
 <html>
 
-  <head>
-    <title> HOME PAGE</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+</head>
 
-  <body>
-    <h1>
-      Howdy, friends! You are logged in now! Username: {{ user }}
-    </h1>
-    <br>
-    <h3>
-      <form action="/logout">
-        <input type="submit" name="sub1" value="Log Out">
-      </form>
-    </h3>
-      
-    <p>
-      <br>
-      <form action="/create">
-        <button name="createstory" type="submit">Create a story</button>
-      </form>
-      <br>
-      Or choose a created story:
-    </p>
-    
-      {% for i in stories%}
-      <form action="/view" method="get">
-        <button name="id" type="submit" value={{i[1]}}>{{i[0]}}</button>
-      </form>
-      {% endfor %}
-    
+      <div class="container">
+        <div class="login-box">
+          {% if stories %}  
+            <h2>Your Username is: {{user}}<br><br>
+                Choose A Story:</h2>
+              {% for i in stories%}
+                <div class="input-box">
+                  <form action="/view" method="get">
+                      <button name="id" class="btn" type="submit" value={{i[1]}}>{{i[0]}}</button>
+                  </form>
+                </div>
+              {% endfor %}
+          {% endif %}
+            <div class="signup-link">
+              <div class="signup-link">
+                <a href="/create">Create A Story</a>
+              </div>
+            </div>
+            <div class="signup-link">
+              <div class="signup-link">
+                <a href="/logout">Log Out</a>
+              </div>
+            </div>
+        </div>
+      </div>
   </body>
 
 </html>

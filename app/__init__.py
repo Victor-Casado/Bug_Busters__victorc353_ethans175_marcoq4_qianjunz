@@ -45,7 +45,7 @@ def login():
                 session['id'] = i
                 return redirect(url_for('home'))
             baseReturn = "Wrong username and password. Please try again."
-    return render_template('login.html', statement = baseReturn)
+    return render_template('login2.html', statement = baseReturn)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -69,7 +69,7 @@ def signup():
         else:
             baseReturn = "Your desired username and password do not match please try again."
 
-    return render_template('signup.html', statement = baseReturn)
+    return render_template('signup2.html', statement = baseReturn)
 
 @app.route('/view', methods=['GET', 'POST'])
 def view_story():
@@ -86,7 +86,7 @@ def view_story():
     if(db.hasWritten(session['id'], story_id) == 0):
         return redirect(url_for('edit_story'))
     #print(story_id)
-    return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id))
+    return render_template('viewStory.html', story=db.getMainText(story_id), lastentry=db.getLatestEntry(story_id)+"\n", title=db.getTitle(story_id))
 
 @app.route('/create', methods=['GET', 'POST'])
 def create_story():
@@ -111,7 +111,7 @@ def edit_story():
         return redirect(url_for('view_story'))
     if 'username' not in session:
         return redirect(url_for('login'))
-    
+
     return render_template('editStory.html', lastentry=db.getLatestEntry(story_id)) #story should ONLY be the most recent entry
 
 @app.route('/logout')

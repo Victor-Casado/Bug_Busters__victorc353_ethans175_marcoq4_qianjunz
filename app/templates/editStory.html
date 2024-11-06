@@ -2,35 +2,38 @@
 
 <html>
 
-  <head>
-    <title> STORY EDIT PAGE </title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit {{title}}</title>
+  <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+</head>
 
-  <body>
-    <h1>
-      Howdy, friends!
-    </h1>
+      <div class="container">
+        <div class="login-box">
+          <h2>
+            Continue the story:
+          </h2>
+          <p>
+            {{lastentry}}
+          </p>
 
-    <p>
-      The most recent entry is: <br>
-      {{lastentry}}
-  </p>
-    <h3>
-      Enter your new entry.
-    </h3>
-    <form action="/edit" method="post">
-      <input type="text" name="entry">
-      <input type="submit" name="sub1">
-    </form>
-    <br>
-    <p>
-      Or, you can go back:
-  </p>
-  <form action="/">
-    <input type="submit" name="sub1" value="Back to home">
-  </form>
+          <form action="/edit" method="post">
+            <div class="input-box">
+                <input type="text" name="entry" required>
+                <label>Newest Entry</label>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
 
-    <br>
+          <div class="signup-link">
+            <div class="signup-link">
+              <a href="/">Back to Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
   </body>
 
 </html>
