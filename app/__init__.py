@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import sqlite3
 import db
 import os
-os.remove("onceuponatable.db")
+import os.path
+if (os.path.isfile("onceuponatable.db")):
+    os.remove("onceuponatable.db")
 db.createTables()
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
