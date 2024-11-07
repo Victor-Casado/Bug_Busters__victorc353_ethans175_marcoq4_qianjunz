@@ -76,3 +76,5 @@ victorC -- 2024-11-05 22:46
 *Bug with the "'" character still persists
 victorC -- 2024-11-6 10:30
 *Updated readme
+victorC -- 2024-11-6 18:27
+*CSS in DEMO branch
