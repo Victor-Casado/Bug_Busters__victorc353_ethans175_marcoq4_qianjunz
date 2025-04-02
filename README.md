@@ -33,18 +33,18 @@
 
 3. In your terminal, run the command
 
-        pip install -r Bug_Busters__victorc353_ethans175_marcoq4_qianjunz/requirements.txt
+        pip install -r M.A.D.E_for_Greatness__marcoq4_abidurr6_dannyh36_endriti2/requirements.txt
 
 
 # Launch Codes
 1. Activate the virtual environment from the install guide if not activated already
 2. Change directory into the app folder
 
-        cd Bug_Busters__victorc353_ethans175_marcoq4_qianjunz/app
+        cd M.A.D.E_for_Greatness__marcoq4_abidurr6_dannyh36_endriti2/app
 
 
 3. Run the App:
 
         $ python3 __init__.py
 
-4. Open the app in a browser by navigating to <a href="http://127.0.0.1:5001">127.0.0.1:5001</a>
+4. Open the app in a browser by navigating to <a href="http://127.0.0.1:5000">127.0.0.1:5000</a>
